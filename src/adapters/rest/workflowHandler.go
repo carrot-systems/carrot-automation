@@ -72,7 +72,7 @@ func (rH RoutesHandler) UpdateWorkflowActionsHandler(c *gin.Context) {
 		return
 	}
 
-	err := rH.Usecases.SetWorkflowData(user, id, content)
+	err = rH.Usecases.SetWorkflowData(user, id, content)
 
 	if err != nil {
 		rH.handleError(c, err)
