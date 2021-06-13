@@ -40,6 +40,25 @@ type Workflow struct {
 	Trigger *uuid.UUID
 }
 
+type WorkflowAction struct {
+	Id        uuid.UUID
+	ServiceId string
+	ActionId  string
+	Trigger   bool
+}
+
+type WorkflowLink struct {
+	InputAction  uuid.UUID
+	InputId      string
+	OutputAction uuid.UUID
+	OutputId     string
+}
+
+type WorkflowContent struct {
+	Actions []WorkflowAction
+	Links   []WorkflowLink
+}
+
 func (w *Workflow) Initialize() {
 	w.ID = uuid.New()
 }

@@ -46,3 +46,7 @@ func (rH RoutesHandler) getAuthenticatedUser(c *gin.Context) *domain.User {
 
 	return &authenticatedUser
 }
+
+func (rH RoutesHandler) endpointNotFound(c *gin.Context) {
+	rH.handleError(c, ErrNotFound)
+}

@@ -31,6 +31,16 @@ type Action struct {
 	Trigger   bool
 }
 
+type Link struct {
+	gorm.Model
+	ID           uuid.UUID `gorm:"type:uuid;primary_key"`
+	WorkflowId   uuid.UUID
+	ActionInput  uuid.UUID
+	InputId      uuid.UUID
+	ActionOutput uuid.UUID
+	OutputId     uuid.UUID
+}
+
 type Workflow struct {
 	gorm.Model
 	ID      uuid.UUID `gorm:"type:uuid;primary_key"`

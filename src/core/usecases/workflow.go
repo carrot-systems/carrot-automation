@@ -39,6 +39,7 @@ func (i interactor) GetUserWorkflows(user *domain.User) ([]*domain.Workflow, err
 }
 
 func (i interactor) DeleteWorkflow(user *domain.User, id string) error {
+	//TODO: check if workflow belong to user
 	workflow, err := i.workflowRepo.FindById(id)
 
 	if err != nil || workflow == nil {
@@ -48,4 +49,8 @@ func (i interactor) DeleteWorkflow(user *domain.User, id string) error {
 	i.workflowRepo.DeleteWorkflow(workflow)
 
 	return nil
+}
+
+func (i interactor) SetWorkflowData(user *domain.User, workflowId string, workflowData domain.WorkflowContent) error {
+	return domain.ErrFeatureNotImplemented
 }

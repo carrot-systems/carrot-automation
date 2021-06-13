@@ -9,6 +9,7 @@ type Usecases interface {
 	CreateWorkflow(user *domain.User, name string) error
 	GetUserWorkflows(user *domain.User) ([]*domain.Workflow, error)
 	DeleteWorkflow(user *domain.User, id string) error
+	SetWorkflowData(user *domain.User, workflowId string, workflowData domain.WorkflowContent) error
 
 	//Services
 	GetAllServices() ([]domain.Service, error)

@@ -12,6 +12,7 @@ import (
 
 var (
 	ErrFormValidation = errors.New("failed to validate form")
+	ErrNotFound       = errors.New("endpoint not found")
 )
 
 func getFrame(skipFrames int) runtime.Frame {
@@ -43,10 +44,12 @@ func codeForError(err error) int {
 		return http.StatusBadRequest
 	case domain.ErrFailedToGetUser:
 		return http.StatusUnauthorized
-	case domain.ErrServiceNotFound, domain.ErrWorkflowNotFound:
+	case ErrNotFound, domain.ErrServiceNotFound, domain.ErrWorkflowNotFound:
 		return http.StatusNotFound
 	case domain.ErrWorkflowAlreadyExistingWithThisName:
 		return http.StatusConflict
+	case domain.ErrFeatureNotImplemented:
+		return http.StatusNotImplemented
 	}
 	return http.StatusInternalServerError
 }

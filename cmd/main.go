@@ -40,11 +40,7 @@ func main() {
 		db.AutoMigrate(&postgres.RunningHistory{})
 		db.AutoMigrate(&postgres.Action{})
 		db.AutoMigrate(&postgres.ActionVariable{})
-		/*err := postgres.Migrate(db, "./migrations", "carrot_automation_migration")
-		if err != nil {
-			log.Fatalln(err.Error())
-		}*/
-		_ = db
+		db.AutoMigrate(&postgres.Link{})
 	}
 
 	usecasesHandler := usecases.NewInteractor(jwtInstance, &services, workflowRepo)

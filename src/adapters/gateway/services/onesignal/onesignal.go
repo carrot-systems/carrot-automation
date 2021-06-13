@@ -11,7 +11,7 @@ func NewOnesignal() domain.Service {
 			{
 				ActionId:    "notification",
 				IsTrigger:   true,
-				Name:        "Notification",
+				Name:        "notification",
 				Description: "Sends a notification",
 				Output:      nil,
 				Input: []domain.IO{

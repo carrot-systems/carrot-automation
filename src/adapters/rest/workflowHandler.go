@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"github.com/carrot-systems/carrot-automation/src/core/domain"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -42,13 +43,42 @@ func (rH RoutesHandler) DeleteWorkflowHandler(c *gin.Context) {
 		return
 	}
 
-	id := "0ac1e794-cde1-4cd4-a475-be802e552fdf"
+	id := c.Param("id")
 
 	err := rH.Usecases.DeleteWorkflow(user, id)
 
 	if err != nil {
 		rH.handleError(c, err)
+		return
 	}
 
 	c.Status(http.StatusOK)
+}
+
+func (rH RoutesHandler) UpdateWorkflowActionsHandler(c *gin.Context) {
+	user := rH.getAuthenticatedUser(c)
+	if user == nil {
+		return
+	}
+
+	id := c.Param("id")
+	_ = id
+
+	var content domain.WorkflowContent
+	err := c.BindJSON(&content)
+
+	if err != nil {
+		rH.handleError(c, err)
+		return
+	}
+
+	err := rH.Usecases.SetWorkflowData(user, id, content)
+
+	if err != nil {
+		rH.handleError(c, err)
+		return
+	}
+
+	c.Status(http.StatusOK)
+
 }
