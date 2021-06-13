@@ -75,7 +75,7 @@ func workflowToDomain(workflow *Workflow) *domain.Workflow {
 	return &domain.Workflow{
 		ID:      workflow.ID,
 		Name:    workflow.Name,
-		User:    nil,
+		User:    workflow.User,
 		History: nil,
 		Trigger: nil,
 	}

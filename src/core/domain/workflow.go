@@ -35,7 +35,7 @@ type Link struct {
 type Workflow struct {
 	ID      uuid.UUID
 	Name    string
-	User    *uuid.UUID
+	User    *uuid.UUID `json:"-"`
 	History []*uuid.UUID
 	Trigger *uuid.UUID
 }

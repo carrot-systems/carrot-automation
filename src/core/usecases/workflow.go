@@ -1,6 +1,8 @@
 package usecases
 
-import "github.com/carrot-systems/carrot-automation/src/core/domain"
+import (
+	"github.com/carrot-systems/carrot-automation/src/core/domain"
+)
 
 func (i interactor) CreateWorkflow(user *domain.User, name string) error {
 	workflow := &domain.Workflow{
@@ -39,10 +41,13 @@ func (i interactor) GetUserWorkflows(user *domain.User) ([]*domain.Workflow, err
 }
 
 func (i interactor) DeleteWorkflow(user *domain.User, id string) error {
-	//TODO: check if workflow belong to user
 	workflow, err := i.workflowRepo.FindById(id)
 
 	if err != nil || workflow == nil {
+		return domain.ErrWorkflowNotFound
+	}
+
+	if *workflow.User != user.UserID {
 		return domain.ErrWorkflowNotFound
 	}
 
