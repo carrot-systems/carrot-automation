@@ -3,7 +3,6 @@ module github.com/carrot-systems/carrot-automation
 go 1.16
 
 require (
-	github.com/davecgh/go-spew v1.1.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.7.1
 	github.com/golang-migrate/migrate/v4 v4.14.1

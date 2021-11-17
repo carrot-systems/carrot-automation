@@ -150,10 +150,10 @@ func (w workflowRepo) FindByUser(user uuid.UUID) ([]*domain.Workflow, error) {
 	return workflowsToDomain(workflows), nil
 }
 
-func (w workflowRepo) FindById(id string) (*domain.Workflow, error) {
+func (w workflowRepo) FindById(user uuid.UUID, id string) (*domain.Workflow, error) {
 	var workflow *Workflow
 
-	query := w.db.Where("\"id\" = ?", id).First(&workflow)
+	query := w.db.Where("\"user\" = ? AND \"id\" = ?", user, id).First(&workflow)
 
 	if query.Error != nil {
 		return nil, query.Error

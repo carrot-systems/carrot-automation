@@ -22,7 +22,7 @@ type WorkflowRepo interface {
 	CreateWorkflow(workflow *domain.Workflow) error
 	FindByName(user uuid.UUID, name string) (*domain.Workflow, error)
 	FindByUser(user uuid.UUID) ([]*domain.Workflow, error)
-	FindById(id string) (*domain.Workflow, error)
+	FindById(user uuid.UUID, id string) (*domain.Workflow, error)
 	DeleteWorkflow(workflow *domain.Workflow) error
 }
 
